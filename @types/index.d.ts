@@ -11,6 +11,11 @@ declare module '*.jpg' {
   export default content
 }
 
+declare module '*.jpeg' {
+  const content: any
+  export default content
+}
+
 declare type ListenerMap = {
   [k: string]: any
 }
