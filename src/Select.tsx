@@ -2,14 +2,14 @@ import React, { useContext } from 'react'
 import classNames from 'classnames'
 import { ThemeContext } from './context/ThemeContext'
 
-interface Props extends React.SelectHTMLAttributes<HTMLSelectElement> {
+export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   /**
    * Defines the color of the select
    */
   valid?: boolean
 }
 
-const Select = React.forwardRef<HTMLSelectElement, Props>(function Select(props, ref) {
+const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function Select(props, ref) {
   const { valid, children, className, multiple, disabled, ...other } = props
 
   const {
