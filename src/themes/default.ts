@@ -1,7 +1,7 @@
 export default {
   // Alert
   alert: {
-    base: 'p-4 pl-12 relative rounded-lg leading-5',
+    base: 'w-full p-4 pl-12 relative rounded-lg leading-5',
     withClose: 'pr-12',
     success: 'bg-green-50 text-green-900 dark:bg-green-600 dark:text-white',
     danger: 'bg-red-50 text-red-900 dark:bg-red-600 dark:text-white',
@@ -37,7 +37,7 @@ export default {
   },
   // TableContainer
   tableContainer: {
-    base: 'w-full overflow-hidden rounded-lg shadow-xs',
+    base: 'w-full overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5',
   },
   // TableCell
   tableCell: {
@@ -57,7 +57,7 @@ export default {
   // Dropdown
   dropdown: {
     base:
-      'absolute w-56 p-2 mt-2 text-gray-600 bg-white border border-gray-100 rounded-lg shadow-md min-w-max-content dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700',
+      'absolute w-56 p-2 mt-2 text-gray-600 bg-white border border-gray-100 rounded-lg shadow-md min-w-max dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700',
     align: {
       left: 'left-0',
       right: 'right-0',
@@ -117,16 +117,15 @@ export default {
   },
   // Select
   select: {
-    base: 'block w-full text-sm dark:text-gray-300 focus:outline-none',
+    base: 'block w-full text-sm border-gray-300 rounded-md dark:text-gray-300 focus:outline-none',
     active:
-      'focus:border-purple-400 dark:border-gray-600 dark:bg-gray-700 focus:ring-purple dark:focus:ring-gray dark:focus:border-gray-600',
-    select: 'form-select leading-5',
-    multiple: 'form-multiselect',
+      'focus:border-purple-400 dark:border-gray-600 dark:bg-gray-700 focus:ring focus:ring-purple-300 focus:ring-opacity-40 dark:focus:ring-gray-300 dark:focus:border-gray-600',
+    select: 'leading-5',
     disabled: 'cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800',
     valid:
-      'border-green-600 dark:bg-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:ring-green dark:focus:ring-green',
+      'border-green-600 dark:bg-gray-700 focus:ring focus:ring-opacity-40 focus:border-green-400 dark:focus:border-green-400 focus:ring-green-300 dark:focus:ring-green-300',
     invalid:
-      'border-red-600 dark:bg-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red dark:focus:ring-red',
+      'border-red-600 dark:bg-gray-700 focus:ring focus:ring-opacity-40 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-300 dark:focus:ring-red-300',
   },
   // Label
   label: {
@@ -137,18 +136,18 @@ export default {
   },
   // Input
   input: {
-    base: 'block w-full text-sm focus:outline-none dark:text-gray-300 form-input leading-5',
+    base: 'block w-full text-sm rounded-md focus:outline-none dark:text-gray-300 leading-5',
     active:
-      'focus:border-purple-400 dark:border-gray-600 focus:ring-purple dark:focus:border-gray-600 dark:focus:ring-gray dark:bg-gray-700',
+      'focus:border-purple-400 dark:border-gray-600 focus:ring focus:ring-opacity-40 focus:ring-purple-300 dark:focus:border-gray-600 dark:focus:ring-gray dark:bg-gray-700',
     disabled: 'cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800',
     valid:
-      'border-green-600 dark:bg-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:ring-green dark:focus:ring-green',
+      'border-green-600 dark:bg-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:ring focus:ring-opacity-40 focus:ring-green-300 dark:focus:ring-green',
     invalid:
-      'border-red-600 dark:bg-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring-red dark:focus:ring-red',
+      'border-red-600 dark:bg-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:ring focus:ring-opacity-40 focus:ring-red-300 dark:focus:ring-red',
     radio:
-      'text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:ring-purple dark:focus:ring-gray',
+      'text-purple-600 focus:border-purple-400 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-offset-0 focus:ring-purple-300 dark:focus:ring-gray',
     checkbox:
-      'text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:ring-purple dark:focus:ring-gray',
+      'rounded text-purple-600 focus:border-purple-400 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-offset-0 focus:ring-purple-300 dark:focus:ring-gray',
   },
   // HelperText
   helperText: {
@@ -158,7 +157,7 @@ export default {
   },
   // Card
   card: {
-    base: 'min-w-0 rounded-lg shadow-xs overflow-hidden',
+    base: 'min-w-0 rounded-lg shadow-blur-4 overflow-hidden',
     default: 'bg-white dark:bg-gray-800',
   },
   cardBody: {
@@ -193,19 +192,19 @@ export default {
     },
     primary: {
       base: 'text-white bg-purple-600 border border-transparent',
-      active: 'active:bg-purple-600 hover:bg-purple-700 focus:ring-purple',
+      active: 'active:bg-purple-600 hover:bg-purple-700 focus:ring focus:ring-opacity-40 focus:ring-purple-300',
       disabled: 'opacity-50 cursor-not-allowed',
     },
     outline: {
       base: 'text-gray-600 border-gray-300 border dark:text-gray-400 focus:outline-none',
       active:
-        'active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:ring-gray',
+        'active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:ring focus:ring-opacity-40 focus:ring-gray-300',
       disabled: 'opacity-50 cursor-not-allowed bg-gray-300',
     },
     link: {
       base: 'text-gray-600 dark:text-gray-400 focus:outline-none border border-transparent',
       active:
-        'active:bg-transparent hover:bg-gray-100 focus:ring-gray dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10',
+        'active:bg-transparent hover:bg-gray-100 focus:ring focus:ring-opacity-40 focus:ring-gray-300 dark:hover:bg-gray-500 dark:hover:text-gray-300 dark:hover:bg-opacity-10',
       disabled: 'opacity-50 cursor-not-allowed',
     },
     // this is the button that lives inside the DropdownItem

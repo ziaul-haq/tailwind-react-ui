@@ -19,7 +19,7 @@ export default {
 } as Meta
 
 const TextTemplate: Story<InputProps> = (args) => (
-  <section>
+  <section className="w-full">
     <Label>
       <span>Name</span>
       <Input className="mt-1" {...args} />

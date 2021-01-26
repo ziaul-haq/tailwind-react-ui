@@ -17,7 +17,7 @@ export default {
 } as Meta
 
 const Template: Story<SelectProps> = (args) => (
-  <Label>
+  <Label className="w-full">
     <span>Requested Limit</span>
     <Select className="mt-1" {...args} />
   </Label>
