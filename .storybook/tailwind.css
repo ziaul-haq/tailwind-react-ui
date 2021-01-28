@@ -3,8 +3,5 @@
 @tailwind utilities;
 
 #root {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply w-screen flex justify-center items-center flex-col;
 }

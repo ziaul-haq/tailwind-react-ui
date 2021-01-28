@@ -22,11 +22,14 @@ module.exports = {
           900: '#831843',
         },
       },
-      boxShadow: {
-        'blur-4': '0 0 4px rgba(0, 0, 0, 0.12)',
-      },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+      margin: ['last'],
+      textColor: ['active'],
+    },
+  },
   plugins: [require('@tailwindcss/forms')],
 }
