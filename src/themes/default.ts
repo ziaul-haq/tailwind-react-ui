@@ -48,19 +48,13 @@ export default {
     base:
       'bg-white divide-y dark:divide-gray-700 dark:bg-gray-800 text-gray-700 dark:text-gray-400',
   },
-  // DropdownItem
-  // this is the <li> that lives inside the Dropdown <ul>
-  // you're probably looking for the dropdownItem style inside button
-  dropdownItem: {
-    base: 'mb-2 last:mb-0',
-  },
   // Dropdown
   dropdown: {
     base:
-      'absolute w-56 p-2 mt-2 text-gray-600 bg-white border border-gray-100 rounded-lg shadow-md min-w-max dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700',
+      'absolute w-56 mt-2 py-0.5 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 min-w-max dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700',
     align: {
-      left: 'left-0',
-      right: 'right-0',
+      left: 'left-0 origin-top-left',
+      right: 'right-0 origin-top-right',
     },
   },
   // Avatar
@@ -210,7 +204,7 @@ export default {
     // this is the button that lives inside the DropdownItem
     dropdownItem: {
       base:
-        'inline-flex items-center cursor-pointer w-full px-2 py-1 text-sm font-medium transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200',
+        'inline-flex items-center cursor-pointer w-full px-4 py-2 text-sm text-gray-700 focus:outline-none hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-200',
     },
   },
 }

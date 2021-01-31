@@ -35,8 +35,17 @@ const Template: Story<DropdownProps> = (args) => {
           <span>Messages</span>
           <Badge type="danger">13</Badge>
         </DropdownItem>
-        <DropdownItem onClick={() => alert('Alerts!')}>
+        <DropdownItem onClick={() => setIsOpen(false)}>
           <span>Alerts</span>
+        </DropdownItem>
+        <DropdownItem onClick={() => setIsOpen(false)}>
+          <span>Account</span>
+        </DropdownItem>
+        <DropdownItem onClick={() => setIsOpen(false)}>
+          <span>Support</span>
+        </DropdownItem>
+        <DropdownItem onClick={() => setIsOpen(false)}>
+          <span>Sign Out</span>
         </DropdownItem>
       </Dropdown>
     </div>

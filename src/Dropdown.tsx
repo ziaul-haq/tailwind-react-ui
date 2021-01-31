@@ -45,8 +45,8 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function Dropdo
     document.addEventListener('click', handleClickOutside, { capture: true })
     document.addEventListener('keydown', handleEsc, { capture: true })
     return () => {
-      document.removeEventListener('click', handleClickOutside)
-      document.removeEventListener('keydown', handleEsc)
+      document.removeEventListener('click', handleClickOutside, { capture: true })
+      document.removeEventListener('keydown', handleEsc, { capture: true })
     }
   }, [isOpen])
 
@@ -55,9 +55,12 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function Dropdo
   return (
     <Transition
       show={isOpen}
-      leave="transition ease-out duration-150"
+      enter="transition ease-out duration-100"
+      enterFrom="transform opacity-0 scale-95"
+      enterTo="transform opacity-100 scale-100"
+      leave="transition ease-in duration-75"
       leaveFrom="opacity-100"
-      leaveTo="opacity-0"
+      leaveTo="transform opacity-0 scale-95"
     >
       <div ref={ref}>
         <FocusLock returnFocus>

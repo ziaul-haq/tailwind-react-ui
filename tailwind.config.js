@@ -27,7 +27,6 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['active'],
-      margin: ['last'],
       textColor: ['active'],
     },
   },
