@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -19,10 +19,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {
   const { valid, disabled, className, type = 'text', ...other } = props
-
-  const {
-    theme: { input },
-  } = useContext(ThemeContext)
+  const { input } = styles
 
   const baseStyle = input.base
   const activeStyle = input.active

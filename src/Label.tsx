@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLLabelElement> {
   /**
@@ -19,9 +19,7 @@ interface Props extends React.HTMLAttributes<HTMLLabelElement> {
 
 const Label = React.forwardRef<HTMLLabelElement, Props>(function Label(props, ref) {
   const { children, check, radio, disabled, className, ...other } = props
-  const {
-    theme: { label },
-  } = useContext(ThemeContext)
+  const { label } = styles
 
   const baseStyle = label.base
   const checkStyle = label.check

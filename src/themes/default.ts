@@ -120,6 +120,7 @@ export default {
       'border-green-600 dark:bg-gray-700 focus:ring focus:ring-opacity-40 focus:border-green-400 dark:focus:border-green-400 focus:ring-green-300 dark:focus:ring-green-300',
     invalid:
       'border-red-600 dark:bg-gray-700 focus:ring focus:ring-opacity-40 focus:border-red-400 dark:focus:border-red-400 focus:ring-red-300 dark:focus:ring-red-300',
+    multiple: '',
   },
   // Label
   label: {
@@ -181,6 +182,7 @@ export default {
       large: 'h-5 w-5',
       regular: 'h-5 w-5',
       small: 'h-3 w-3',
+      pagination: '',
       left: 'mr-2 -ml-1',
       right: 'ml-2 -mr-1',
     },

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   /**
@@ -12,9 +12,7 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function Select(props, ref) {
   const { valid, children, className, multiple, disabled, ...other } = props
 
-  const {
-    theme: { select },
-  } = useContext(ThemeContext)
+  const { select } = styles
 
   const baseStyle = select.base
   const activeStyle = select.active

@@ -1,10 +1,9 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
+import FocusLock from 'react-focus-lock'
 import Backdrop from './Backdrop'
 import Transition from './Transition'
-import FocusLock from 'react-focus-lock'
-
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -20,9 +19,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(function Modal(props, ref) {
   const { children, onClose, isOpen, ...other } = props
 
-  const {
-    theme: { modal },
-  } = useContext(ThemeContext)
+  const { modal } = styles
 
   const baseStyle = modal.base
 

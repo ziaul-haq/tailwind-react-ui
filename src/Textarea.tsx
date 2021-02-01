@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
@@ -12,9 +12,7 @@ interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
 const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(function Textarea(props, ref) {
   const { valid, disabled, className, children, ...other } = props
 
-  const {
-    theme: { textarea },
-  } = useContext(ThemeContext)
+  const { textarea } = styles
 
   const baseStyle = textarea.base
   const activeStyle = textarea.active

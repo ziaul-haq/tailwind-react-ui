@@ -1,8 +1,8 @@
 import React, { useEffect, useContext, useRef } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
-import Transition from './Transition'
 import FocusLock from 'react-focus-lock'
+import styles from './themes/default'
+import Transition from './Transition'
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLUListElement> {
   /**
@@ -21,9 +21,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLUListElement> {
 
 const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function Dropdown(props, ref) {
   const { children, onClose, isOpen, className, align = 'left', ...other } = props
-  const {
-    theme: { dropdown },
-  } = useContext(ThemeContext)
+  const { dropdown } = styles
 
   const baseStyle = dropdown.base
   const alignStyle = dropdown.align[align]

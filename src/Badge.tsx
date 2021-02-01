@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
@@ -11,10 +11,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(function Badge(props, ref) {
   const { className, children, type = 'primary', ...other } = props
-
-  const {
-    theme: { badge },
-  } = useContext(ThemeContext)
+  const { badge } = styles
 
   const baseStyle = badge.base
   const typeStyle = {

@@ -1,5 +1,3 @@
-export { ThemeContext as WindmillContext } from './context/ThemeContext'
-
 export { default as Alert } from './Alert'
 export { default as Avatar } from './Avatar'
 export { default as Backdrop } from './Backdrop'
@@ -27,4 +25,3 @@ export { default as TableHeader } from './TableHeader'
 export { default as TableRow } from './TableRow'
 export { default as Textarea } from './Textarea'
 export { default as Transition } from './Transition'
-export { default as Windmill } from './Windmill'

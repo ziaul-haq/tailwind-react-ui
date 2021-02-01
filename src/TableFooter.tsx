@@ -1,15 +1,13 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 
 const TableFooter = React.forwardRef<HTMLDivElement, Props>(function TableFooter(props, ref) {
   const { className, children, ...other } = props
 
-  const {
-    theme: { tableFooter },
-  } = useContext(ThemeContext)
+  const { tableFooter } = styles
 
   const baseStyle = tableFooter.base
 
