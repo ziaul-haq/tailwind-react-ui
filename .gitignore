@@ -2,7 +2,7 @@ node_modules
 coverage
 dist
 dev
-style/output.css
+.storybook/output.css
 storybook-static/
 lib
 .env

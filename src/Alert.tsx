@@ -1,6 +1,6 @@
 import React, { SVGAttributes, useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 enum AlertEnum {
   success,
@@ -95,9 +95,7 @@ export const NeutralIcon: React.FC<IconProps> = (props) => (
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   const { className, children, type = 'neutral', onClose, ...other } = props
-  const {
-    theme: { alert },
-  } = useContext(ThemeContext)
+  const { alert } = styles
 
   const baseStyle = alert.base
   const withCloseStyle = alert.withClose

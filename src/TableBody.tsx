@@ -1,15 +1,13 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLTableSectionElement> {}
 
 const TableBody = React.forwardRef<HTMLTableSectionElement, Props>(function TableBody(props, ref) {
   const { className, children, ...other } = props
 
-  const {
-    theme: { tableBody },
-  } = useContext(ThemeContext)
+  const { tableBody } = styles
 
   const baseStyle = tableBody.base
 

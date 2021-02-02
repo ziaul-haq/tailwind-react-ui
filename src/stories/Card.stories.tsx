@@ -37,7 +37,7 @@ Simple.args = {
 export const Colored = CardTemplate.bind({})
 Colored.args = {
   colored: true,
-  className: 'bg-purple-600',
+  className: 'bg-primary',
   children: (
     <CardBody>
       <p className="mb-4 font-semibold text-white">Revenue</p>
@@ -52,7 +52,7 @@ Colored.args = {
 
 export const Stats = () => (
   <section className="m-4 flex align-center">
-    <Card colored className="bg-pink-600 px-5 py-8 mr-4">
+    <Card colored className="bg-primary px-5 py-8 mr-4">
       <CardBody>
         <p className="mb-4 text-base text-white">Registered Distributors</p>
         <p className="font-medium text-4xl text-white">200</p>
@@ -60,8 +60,8 @@ export const Stats = () => (
     </Card>
     <Card className="px-5 py-8 mr-4">
       <CardBody>
-        <p className="text-pink-600 mb-4 text-base text-white">Expired Distributors</p>
-        <p className="text-pink-600 font-medium text-4xl text-white">60</p>
+        <p className="mb-4 text-base text-primary">Expired Distributors</p>
+        <p className="font-medium text-4xl text-primary">60</p>
       </CardBody>
     </Card>
     <Card className="px-5 py-8">

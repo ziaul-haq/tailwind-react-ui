@@ -1,15 +1,13 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLTableRowElement> {}
 
 const TableRow = React.forwardRef<HTMLTableRowElement, Props>(function TableRow(props, ref) {
   const { className, children, ...other } = props
 
-  const {
-    theme: { tableRow },
-  } = useContext(ThemeContext)
+  const { tableRow } = styles
 
   const baseStyle = tableRow.base
 

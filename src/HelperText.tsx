@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLSpanElement> {
   /**
@@ -11,9 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLSpanElement> {
 
 const HelperText = React.forwardRef<HTMLSpanElement, Props>(function HelperText(props, ref) {
   const { children, valid, className, ...other } = props
-  const {
-    theme: { helperText },
-  } = useContext(ThemeContext)
+  const { helperText } = styles
 
   const baseStyle = helperText.base
   const validStyle = helperText.valid

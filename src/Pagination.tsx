@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Button, { ButtonAsButtonProps } from './Button'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 const PrevIcon: React.FC = function PrevIcon(props) {
   return (
@@ -157,9 +157,7 @@ const Pagination = React.forwardRef<Ref, PaginationProps>(function Pagination(pr
     onChange(activePage)
   }, [activePage])
 
-  const {
-    theme: { pagination },
-  } = useContext(ThemeContext)
+  const { pagination } = styles
 
   const baseStyle = pagination.base
 

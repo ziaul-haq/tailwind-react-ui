@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -19,9 +19,7 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(function Avatar(props, ref) {
   const { size = 'regular', src, alt, className, ...other } = props
-  const {
-    theme: { avatar },
-  } = useContext(ThemeContext)
+  const { avatar } = styles
 
   const baseStyle = avatar.base
   const sizeStyles = {

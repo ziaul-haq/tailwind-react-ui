@@ -1,14 +1,12 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
 
 const ModalBody = React.forwardRef<HTMLDivElement, Props>(function ModalBody(props, ref) {
   const { children, className, ...other } = props
-  const {
-    theme: { modalBody },
-  } = useContext(ThemeContext)
+  const { modalBody } = styles
 
   const baseStyle = modalBody.base
 

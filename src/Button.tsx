@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import React, { ReactNode, useContext } from 'react'
-import { ThemeContext } from './context/ThemeContext'
+import styles from './themes/default'
 import warn from './utils/warning'
 
 type IconType =
@@ -79,9 +79,7 @@ const Button = React.forwardRef<Ref, ButtonProps>(function Button(props, ref) {
     children,
     ...other
   } = props
-  const {
-    theme: { button },
-  } = useContext(ThemeContext)
+  const { button } = styles
 
   function hasIcon() {
     return !!icon || !!iconLeft || !!iconRight
