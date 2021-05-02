@@ -16,8 +16,6 @@
     "build:lib": "babel src/themes/default.ts --out-file lib/defaultTheme.js",
     "build": "webpack",
     "predev": "npm run build:tailwind",
-    "dev": "styleguidist server",
-    "build:styleguide": "styleguidist build",
     "cz": "git-cz",
     "test": "jest",
     "codecov": "codecov",
@@ -36,16 +34,12 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.2.1",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9.8.6",
     "classnames": "2.2.6",
     "color": "3.1.2",
     "deepmerge": "4.2.2",
-    "postcss": "^7.0.35",
     "prop-types": "15.7.2",
     "react-focus-lock": "2.5.0",
-    "react-transition-group": "4.4.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+    "react-transition-group": "4.4.1"
   },
   "devDependencies": {
     "@babel/cli": "7.12.10",
@@ -54,17 +48,22 @@
     "@babel/preset-react": "7.12.10",
     "@babel/preset-typescript": "7.12.7",
     "@release-it/conventional-changelog": "2.0.0",
-    "@storybook/addon-actions": "6.1.0-alpha.31",
-    "@storybook/addon-essentials": "6.1.0-alpha.31",
-    "@storybook/addon-links": "6.1.0-alpha.31",
-    "@storybook/react": "6.1.0-alpha.31",
+    "@storybook/addon-actions": "6.2.1",
+    "@storybook/addon-essentials": "6.2.1",
+    "@storybook/addon-links": "6.2.1",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/react": "6.2.1",
     "@types/classnames": "2.2.10",
     "@types/enzyme": "3.10.5",
     "@types/jest": "26.0.13",
     "@types/react": "16.9.49",
     "@types/react-dom": "16.9.8",
     "@types/react-transition-group": "4.4.0",
+    "@typescript-eslint/eslint-plugin": "4.20.0",
+    "@typescript-eslint/parser": "4.20.0",
     "@wojtekmaj/enzyme-adapter-react-17": "0.3.2",
+    "autoprefixer": "10.2.5",
+    "babel-eslint": "10.1.0",
     "babel-jest": "26.1.0",
     "babel-loader": "8.1.0",
     "codecov": "3.7.1",
@@ -72,28 +71,29 @@
     "css-loader": "3.6.0",
     "cz-conventional-changelog": "3.2.0",
     "enzyme": "3.11.0",
-    "eslint": "7.0.0",
-    "eslint-config-prettier": "6.11.0",
-    "eslint-config-standard": "14.1.1",
-    "eslint-plugin-import": "2.20.2",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "3.1.3",
-    "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-react": "7.20.0",
-    "eslint-plugin-standard": "4.0.1",
+    "eslint": "7.23.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-config-react-app": "6.0.0",
+    "eslint-plugin-flowtype": "5.4.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.23.1",
+    "eslint-plugin-react-hooks": "4.2.0",
     "html-webpack-plugin": "5.0.0-alpha.7",
     "husky": "4.2.5",
     "jest": "26.0.1",
     "jest-svg-transformer": "1.0.0",
-    "prettier": "2.0.5",
+    "lint-staged": "10.5.4",
+    "postcss": "8.2.9",
+    "prettier": "2.2.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-is": "17.0.1",
-    "react-styleguidist": "11.0.8",
     "release-it": "14.2.0",
     "rimraf": "3.0.2",
-    "storybook-dark-mode": "^1.0.4",
+    "storybook-dark-mode": "^1.0.7",
     "style-loader": "1.2.1",
+    "tailwindcss": "2.1.1",
     "ts-jest": "26.3.0",
     "ts-loader": "8.0.3",
     "typescript": "4.0.2",
@@ -132,13 +132,6 @@
       "@babel/preset-react"
     ]
   },
-  "prettier": {
-    "printWidth": 100,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "endOfLine": "lf"
-  },
   "jest": {
     "preset": "ts-jest",
     "testPathIgnorePatterns": [
@@ -171,9 +164,16 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "eslint",
+      "jest --bail --findRelatedTests"
+    ]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run test:coverage"
+      "pre-commit": "lint-staged"
     }
   }
 }

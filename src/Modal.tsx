@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import FocusLock from 'react-focus-lock'
 import Backdrop from './Backdrop'
@@ -46,21 +46,21 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(function Modal(props,
     <Transition show={isOpen}>
       <>
         <Transition
-          enter="transition ease-out duration-150"
+          enter="transition ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="transition ease-in duration-150"
+          leave="transition ease-in duration-200"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
           <Backdrop onClick={onClose}>
             <Transition
-              enter="transition ease-out duration-150"
-              enterFrom="opacity-0 transform translate-y-1/2"
-              enterTo="opacity-100"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0  transform translate-y-1/2"
+              enter="transition-all ease-out duration-300"
+              enterFrom="transform translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterTo="transform translate-y-0 sm:scale-100"
+              leave="transition-all ease-in duration-200"
+              leaveFrom="transform translate-y-0 sm:scale-100"
+              leaveTo="transform translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <div
                 className={baseStyle}

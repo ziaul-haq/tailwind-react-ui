@@ -6,7 +6,7 @@ import { CSSTransition as ReactCSSTransition } from 'react-transition-group'
 
 interface TransitionContext {
   parent: {
-    appear?: string
+    appear?: boolean
     show?: boolean
     isInitialRender?: boolean
   }
@@ -32,7 +32,7 @@ interface TransitionProps {
   leave?: string
   leaveFrom?: string
   leaveTo?: string
-  appear?: string
+  appear?: boolean
 }
 
 const CSSTransition: React.FC<TransitionProps> = function CSSTransition({
@@ -101,7 +101,13 @@ const Transition: React.FC<TransitionProps> = function Transition({ show, appear
   const isChild = show === undefined
 
   if (isChild) {
-    return <CSSTransition appear={parent.appear} show={parent.show} {...rest} />
+    return (
+      <CSSTransition
+        appear={parent.appear || !parent.isInitialRender}
+        show={parent.show}
+        {...rest}
+      />
+    )
   } else
     return (
       <transitionContext.Provider
