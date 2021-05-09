@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -22,7 +22,7 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(function Badge(props
     primary: badge.primary,
   }
 
-  const cls = classNames(baseStyle, typeStyle[type], className)
+  const cls = clsx(baseStyle, typeStyle[type], className)
 
   return (
     <span className={cls} ref={ref} {...other}>

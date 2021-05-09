@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
@@ -10,7 +10,7 @@ const ModalHeader = React.forwardRef<HTMLParagraphElement, Props>(function Modal
 
   const baseStyle = modalHeader.base
 
-  const cls = classNames(baseStyle, className)
+  const cls = clsx(baseStyle, className)
 
   return (
     <p className={cls} ref={ref} {...other}>

@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useRef } from 'react'
-import classNames from 'classnames'
+import React, { useEffect, useRef } from 'react'
+import clsx from 'clsx'
 import FocusLock from 'react-focus-lock'
 import styles from './themes/default'
 import Transition from './Transition'
@@ -48,7 +48,7 @@ const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function Dropdo
     }
   }, [isOpen])
 
-  const cls = classNames(baseStyle, alignStyle, className)
+  const cls = clsx(baseStyle, alignStyle, className)
 
   return (
     <Transition

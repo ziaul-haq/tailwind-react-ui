@@ -1,5 +1,5 @@
-import React, { SVGAttributes, useContext } from 'react'
-import classNames from 'classnames'
+import React, { SVGAttributes } from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 enum AlertEnum {
@@ -124,10 +124,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props,
       Icon = NeutralIcon
   }
 
-  const cls = classNames(baseStyle, typeStyle, onClose && withCloseStyle, className)
+  const cls = clsx(baseStyle, typeStyle, onClose && withCloseStyle, className)
 
-  const iconCls = classNames(iconBaseStyle, iconTypeStyle, 'absolute left-0 top-0 ml-4 mt-4')
-  const closeCls = classNames(iconBaseStyle, iconTypeStyle)
+  const iconCls = clsx(iconBaseStyle, iconTypeStyle, 'absolute left-0 top-0 ml-4 mt-4')
+  const closeCls = clsx(iconBaseStyle, iconTypeStyle)
 
   return (
     <div className={cls} role="alert" ref={ref} {...other}>

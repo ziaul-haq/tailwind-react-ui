@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,7 +16,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(function Card(props, re
   const baseStyle = card.base
   const uncoloredStyle = card.default
 
-  const cls = classNames(baseStyle, !colored && uncoloredStyle, className)
+  const cls = clsx(baseStyle, !colored && uncoloredStyle, className)
 
   return (
     <div className={cls} ref={ref} {...other}>
