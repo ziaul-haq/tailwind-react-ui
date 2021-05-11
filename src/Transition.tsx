@@ -1,17 +1,18 @@
 /**
  * https://gist.github.com/adamwathan/e0a791aa0419098a7ece70028b2e641e
  */
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { Children, cloneElement, isValidElement, useContext, useEffect, useRef } from 'react'
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group'
 
-interface TransitionContext {
+interface TransitionContextValue {
   parent: {
     appear?: boolean
     show?: boolean
     isInitialRender?: boolean
   }
 }
-const transitionContext = React.createContext<TransitionContext>({
+
+const TransitionContext = React.createContext<TransitionContextValue>({
   parent: {},
 })
 
@@ -35,7 +36,7 @@ interface TransitionProps {
   appear?: boolean
 }
 
-const CSSTransition: React.FC<TransitionProps> = function CSSTransition({
+const CSSTransition = ({
   show,
   enter = '',
   enterFrom = '',
@@ -45,7 +46,11 @@ const CSSTransition: React.FC<TransitionProps> = function CSSTransition({
   leaveTo = '',
   appear,
   children,
-}) {
+}: TransitionProps) => {
+  const nodeRef = useRef<HTMLElement>(null)
+
+  if (!isValidElement(children)) return null
+
   const enterClasses = enter.split(' ').filter((s) => s.length)
   const enterFromClasses = enterFrom.split(' ').filter((s) => s.length)
   const enterToClasses = enterTo.split(' ').filter((s) => s.length)
@@ -53,50 +58,53 @@ const CSSTransition: React.FC<TransitionProps> = function CSSTransition({
   const leaveFromClasses = leaveFrom.split(' ').filter((s) => s.length)
   const leaveToClasses = leaveTo.split(' ').filter((s) => s.length)
 
-  function addClasses(node: HTMLElement, classes: string[]) {
-    classes.length && node.classList.add(...classes)
+  function addClasses(classes: string[]) {
+    classes.length && nodeRef.current?.classList.add(...classes)
   }
 
-  function removeClasses(node: HTMLElement, classes: string[]) {
-    classes.length && node.classList.remove(...classes)
+  function removeClasses(classes: string[]) {
+    classes.length && nodeRef.current?.classList.remove(...classes)
   }
 
   return (
     <ReactCSSTransition
       appear={appear}
-      unmountOnExit
       in={show}
-      addEndListener={(node: HTMLElement, done) => {
-        node.addEventListener('transitionend', done, false)
+      nodeRef={nodeRef}
+      unmountOnExit
+      addEndListener={(done) => {
+        nodeRef.current?.addEventListener('transitionend', done, false)
       }}
-      onEnter={(node: HTMLElement) => {
-        addClasses(node, [...enterClasses, ...enterFromClasses])
+      onEnter={() => {
+        addClasses([...enterClasses, ...enterFromClasses])
       }}
-      onEntering={(node: HTMLElement) => {
-        removeClasses(node, enterFromClasses)
-        addClasses(node, enterToClasses)
+      onEntering={() => {
+        removeClasses(enterFromClasses)
+        addClasses(enterToClasses)
       }}
-      onEntered={(node: HTMLElement) => {
-        removeClasses(node, [...enterToClasses, ...enterClasses])
+      onEntered={() => {
+        removeClasses([...enterToClasses, ...enterClasses])
       }}
-      onExit={(node: HTMLElement) => {
-        addClasses(node, [...leaveClasses, ...leaveFromClasses])
+      onExit={() => {
+        addClasses([...leaveClasses, ...leaveFromClasses])
       }}
-      onExiting={(node: HTMLElement) => {
-        removeClasses(node, leaveFromClasses)
-        addClasses(node, leaveToClasses)
+      onExiting={() => {
+        removeClasses(leaveFromClasses)
+        addClasses(leaveToClasses)
       }}
-      onExited={(node: HTMLElement) => {
-        removeClasses(node, [...leaveToClasses, ...leaveClasses])
+      onExited={() => {
+        removeClasses([...leaveToClasses, ...leaveClasses])
       }}
     >
-      {children}
+      {cloneElement(Children.only(children), {
+        ref: nodeRef,
+      })}
     </ReactCSSTransition>
   )
 }
 
-const Transition: React.FC<TransitionProps> = function Transition({ show, appear, ...rest }) {
-  const { parent } = useContext(transitionContext)
+const Transition = ({ show, appear, ...rest }: TransitionProps) => {
+  const { parent } = useContext(TransitionContext)
   const isInitialRender = useIsInitialRender()
   const isChild = show === undefined
 
@@ -110,7 +118,7 @@ const Transition: React.FC<TransitionProps> = function Transition({ show, appear
     )
   } else
     return (
-      <transitionContext.Provider
+      <TransitionContext.Provider
         value={{
           parent: {
             show,
@@ -120,7 +128,7 @@ const Transition: React.FC<TransitionProps> = function Transition({ show, appear
         }}
       >
         <CSSTransition appear={appear} show={show} {...rest} />
-      </transitionContext.Provider>
+      </TransitionContext.Provider>
     )
 }
 
