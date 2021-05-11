@@ -1,37 +1,112 @@
-import React from 'react'
-import { mount } from 'enzyme'
+import React, { AnchorHTMLAttributes, PropsWithChildren } from 'react'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+
+import DropdownMenu from '../DropdownMenu'
+import Dropdown from '../Dropdown'
+import DropdownToggle from '../DropdownToggle'
 import DropdownItem from '../DropdownItem'
-import Button from '../Button'
+import { suppressConsoleLogs } from './utils/suppressConsoleLog'
 
-describe('DropdownItem', () => {
-  it('should render without crashing', () => {
-    mount(<DropdownItem />)
+it('crashes if rendered without context', () => {
+  suppressConsoleLogs(() => {
+    expect(() => render(<DropdownItem>Item</DropdownItem>)).toThrow()
   })
+})
 
-  it('should render with base styles', () => {
-    const expected = 'mb-2 last:mb-0'
-    const wrapper = mount(<DropdownItem />)
+it('renders without crashing', () => {
+  render(
+    <Dropdown>
+      <DropdownItem>Item</DropdownItem>
+    </Dropdown>
+  )
 
-    expect(wrapper.find('li').getDOMNode().getAttribute('class')).toContain(expected)
-  })
+  expect(screen.getByRole('menuitem')).toBeInTheDocument()
+})
 
-  it('should contain a Button child', () => {
-    const wrapper = mount(<DropdownItem />)
+it('render with different tag', () => {
+  render(
+    <Dropdown>
+      <DropdownItem as="a">Item</DropdownItem>
+    </Dropdown>
+  )
 
-    expect(wrapper.find(Button)).toBeTruthy()
-  })
+  expect(screen.getByRole('menuitem').tagName).toEqual('A')
+})
 
-  it('should pass className to the inner button', () => {
-    const expected = 'bg-red-600'
-    const wrapper = mount(<DropdownItem className="bg-red-600" />)
+it('render with custom component', () => {
+  const Link = ({
+    href,
+    children,
+    className = '',
+    ...other
+  }: PropsWithChildren<AnchorHTMLAttributes<HTMLAnchorElement>>) => (
+    <a href={href} className={`anchor ${className}`} {...other}>
+      {children}
+    </a>
+  )
 
-    expect(wrapper.find(Button).getDOMNode().getAttribute('class')).toContain(expected)
-  })
+  render(
+    <Dropdown>
+      <DropdownItem as={Link} href="/">
+        Item
+      </DropdownItem>
+    </Dropdown>
+  )
 
-  it('should pass extra props to the inner button', () => {
-    const expected = 'test'
-    const wrapper = mount(<DropdownItem tag="a" href="test" />)
+  const element = screen.getByRole('menuitem')
 
-    expect(wrapper.find('a').getDOMNode().getAttribute('href')).toContain(expected)
-  })
+  expect(element).toHaveClass('anchor')
+  expect(element).toHaveAttribute('href', '/')
+})
+
+it('can be disabled', () => {
+  const onClick = jest.fn()
+
+  render(
+    <Dropdown>
+      <DropdownItem disabled onClick={onClick}>
+        Item
+      </DropdownItem>
+    </Dropdown>
+  )
+
+  const element = screen.getByRole('menuitem')
+
+  expect(element).toHaveAttribute('aria-disabled', 'true')
+  expect(element).toBeDisabled()
+  expect(onClick).not.toHaveBeenCalled()
+})
+
+it('should close dropdown on click', () => {
+  render(
+    <Dropdown>
+      <DropdownToggle>Click Me</DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem>Item 1</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  )
+
+  userEvent.click(screen.getByRole('button'))
+
+  expect(screen.getByRole('menu')).toBeInTheDocument()
+
+  userEvent.click(screen.getByRole('menuitem'))
+
+  expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+})
+
+it('accepts a callback prop for click event', () => {
+  const onClick = jest.fn()
+
+  render(
+    <Dropdown>
+      <DropdownItem onClick={onClick}>Item 1</DropdownItem>
+    </Dropdown>
+  )
+
+  userEvent.click(screen.getByRole('menuitem'))
+
+  expect(onClick).toHaveBeenCalledTimes(1)
 })
