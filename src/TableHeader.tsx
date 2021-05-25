@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLTableSectionElement> {}
@@ -14,7 +14,7 @@ const TableHeader = React.forwardRef<HTMLTableSectionElement, Props>(function Ta
 
   const baseStyle = tableHeader.base
 
-  const cls = classNames(baseStyle, className)
+  const cls = clsx(baseStyle, className)
 
   return (
     <thead className={cls} ref={ref} {...other}>

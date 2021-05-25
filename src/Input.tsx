@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -51,7 +51,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(prop
     }
   }
 
-  const cls = classNames(
+  const cls = clsx(
     typeStyle(type),
     // don't apply activeStyle if has valid or disabled
     !hasValidation(valid) && !disabled && activeStyle,

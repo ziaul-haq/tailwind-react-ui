@@ -1,5 +1,5 @@
-import classNames from 'classnames'
-import React, { ReactNode, useContext } from 'react'
+import clsx from 'clsx'
+import React, { ReactNode } from 'react'
 import styles from './themes/default'
 import warn from './utils/warning'
 
@@ -139,8 +139,8 @@ const Button = React.forwardRef<Ref, ButtonProps>(function Button(props, ref) {
 
   const buttonStyles =
     layout === '__dropdownItem'
-      ? classNames(dropdownItemStyle, className)
-      : classNames(
+      ? clsx(dropdownItemStyle, className)
+      : clsx(
           baseStyle,
           // has icon but no children
           hasIcon() && !children && iconSizeStyles[size],
@@ -154,8 +154,8 @@ const Button = React.forwardRef<Ref, ButtonProps>(function Button(props, ref) {
           className
         )
 
-  const iconLeftStyles = classNames(iconStyle, children ? button.icon.left : '')
-  const iconRightStyles = classNames(iconStyle, children ? button.icon.right : '')
+  const iconLeftStyles = clsx(iconStyle, children ? button.icon.left : '')
+  const iconRightStyles = clsx(iconStyle, children ? button.icon.right : '')
 
   return React.createElement(
     tag,

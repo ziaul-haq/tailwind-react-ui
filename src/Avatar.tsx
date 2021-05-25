@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -28,7 +28,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(function Avatar(pro
     small: avatar.size.small,
   }
 
-  const cls = classNames(baseStyle, sizeStyles[size], className)
+  const cls = clsx(baseStyle, sizeStyles[size], className)
 
   return (
     <div className={cls} ref={ref} {...other}>

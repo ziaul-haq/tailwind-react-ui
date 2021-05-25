@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -31,7 +31,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, Props>(function Textarea(
     return ''
   }
 
-  const cls = classNames(
+  const cls = clsx(
     baseStyle,
     // don't apply activeStyle if has valid or disabled
     !hasValidation(valid) && !disabled && activeStyle,

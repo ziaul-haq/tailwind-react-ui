@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLLabelElement> {
@@ -25,7 +25,7 @@ const Label = React.forwardRef<HTMLLabelElement, Props>(function Label(props, re
   const checkStyle = label.check
   const disabledStyle = label.disabled
 
-  const cls = classNames(
+  const cls = clsx(
     baseStyle,
     // check and radio are interchangeable
     (check || radio) && checkStyle,

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
@@ -33,7 +33,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(function Select(
     return ''
   }
 
-  const cls = classNames(
+  const cls = clsx(
     baseStyle,
     // don't apply activeStyle if has valid or disabled
     !hasValidation(valid) && !disabled && activeStyle,

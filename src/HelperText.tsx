@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLSpanElement> {
@@ -28,7 +28,7 @@ const HelperText = React.forwardRef<HTMLSpanElement, Props>(function HelperText(
     }
   }
 
-  const cls = classNames(baseStyle, validationStyle(valid), className)
+  const cls = clsx(baseStyle, validationStyle(valid), className)
 
   return (
     <span className={cls} ref={ref} {...other}>

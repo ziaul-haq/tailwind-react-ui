@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
+import clsx from 'clsx'
 import styles from './themes/default'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
@@ -11,7 +11,7 @@ const TableFooter = React.forwardRef<HTMLDivElement, Props>(function TableFooter
 
   const baseStyle = tableFooter.base
 
-  const cls = classNames(baseStyle, className)
+  const cls = clsx(baseStyle, className)
 
   return (
     <div className={cls} ref={ref} {...other}>
