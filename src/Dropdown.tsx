@@ -1,74 +1,94 @@
-import React, { useEffect, useRef } from 'react'
-import clsx from 'clsx'
-import FocusLock from 'react-focus-lock'
-import styles from './themes/default'
-import Transition from './Transition'
+import React, {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import DropdownItem from './DropdownItem'
+import DropdownMenu from './DropdownMenu'
+import DropdownToggle from './DropdownToggle'
 
-export interface DropdownProps extends React.HTMLAttributes<HTMLUListElement> {
-  /**
-   * Function executed when the dropdown is closed
-   */
-  onClose: () => void
-  /**
-   * Defines if the dropdown is open
-   */
+interface DropdownContextValue {
   isOpen: boolean
-  /**
-   * Defines the alignement of the dropdown related to its parent
-   */
-  align?: 'left' | 'right'
+  toggleDropdown: () => void
+  openDropdown: () => void
+  closeDropdown: () => void
 }
 
-const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(function Dropdown(props, ref) {
-  const { children, onClose, isOpen, className, align = 'left', ...other } = props
-  const { dropdown } = styles
+const DropdownContext = createContext<DropdownContextValue | null>(null)
 
-  const baseStyle = dropdown.base
-  const alignStyle = dropdown.align[align]
+export function useDropdownContext() {
+  const context = useContext(DropdownContext)
 
-  function handleEsc(e: KeyboardEvent) {
-    if (e.key === 'Esc' || e.key === 'Escape') {
-      onClose()
-    }
+  if (!context) {
+    throw new Error(
+      "Dropdown context provider not found, make sure you're using dropdown components correctly."
+    )
   }
 
-  const dropdownRef = useRef<HTMLUListElement>(null)
-  function handleClickOutside(e: MouseEvent) {
-    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-      onClose()
-    }
-  }
+  return context
+}
+
+function Dropdown(props: PropsWithChildren<{}>) {
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleDropdown = () => setIsOpen((isOpen) => !isOpen)
+
+  const openDropdown = () => setIsOpen(true)
+
+  const closeDropdown = () => setIsOpen(false)
+
+  const context = useMemo(
+    () => ({
+      isOpen,
+      toggleDropdown,
+      openDropdown,
+      closeDropdown,
+    }),
+    [isOpen]
+  )
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside, { capture: true })
-    document.addEventListener('keydown', handleEsc, { capture: true })
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!dropdownRef.current?.contains(e.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Esc' || e.key === 'Escape') {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('click', handleOutsideClick, { capture: true })
+      document.addEventListener('keydown', handleEsc, { capture: true })
+    }
+
     return () => {
-      document.removeEventListener('click', handleClickOutside, { capture: true })
+      document.removeEventListener('click', handleOutsideClick, {
+        capture: true,
+      })
       document.removeEventListener('keydown', handleEsc, { capture: true })
     }
   }, [isOpen])
 
-  const cls = clsx(baseStyle, alignStyle, className)
-
   return (
-    <Transition
-      show={isOpen}
-      enter="transition ease-out duration-100"
-      enterFrom="transform opacity-0 scale-95"
-      enterTo="transform opacity-100 scale-100"
-      leave="transition ease-in duration-75"
-      leaveFrom="opacity-100"
-      leaveTo="transform opacity-0 scale-95"
-    >
-      <div ref={ref}>
-        <FocusLock returnFocus>
-          <ul className={cls} ref={dropdownRef} aria-label="submenu" {...other}>
-            {children}
-          </ul>
-        </FocusLock>
+    <DropdownContext.Provider value={context}>
+      <div ref={dropdownRef} className="relative">
+        {props.children}
       </div>
-    </Transition>
+    </DropdownContext.Provider>
   )
-})
+}
+
+Dropdown.Item = DropdownItem
+Dropdown.Menu = DropdownMenu
+Dropdown.Toggle = DropdownToggle
 
 export default Dropdown
