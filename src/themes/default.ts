@@ -65,6 +65,18 @@ export default {
       regular: 'w-8 h-8',
       small: 'w-6 h-6',
     },
+    statusBase: 'absolute bottom-0 right-0 rounded-md',
+    statusIntent: {
+      active: 'bg-green-500',
+      away: 'bg-yellow-500',
+      busy: 'bg-red-500',
+      offline: 'bg-gray-500',
+    },
+    statusSize: {
+      large: 'w-3 h-3',
+      regular: 'w-2 h-2',
+      small: 'w-1.5 h-1.5',
+    }
   },
   // Modal
   modal: {

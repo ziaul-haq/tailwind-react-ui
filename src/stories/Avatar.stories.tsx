@@ -32,3 +32,10 @@ Small.args = {
   src: avatarImage,
   alt: 'Profile image',
 }
+
+export const HasStatus = Template.bind({})
+HasStatus.args = {
+  src: avatarImage,
+  alt: 'Profile image',
+  hasStatus: true,
+}

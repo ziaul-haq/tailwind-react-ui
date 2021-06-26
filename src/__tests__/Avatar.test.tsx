@@ -56,3 +56,54 @@ describe('Avatar', () => {
     expect(wrapper.find('img').getDOMNode().getAttribute('src')).toContain(expected)
   })
 })
+
+describe('Avatar Status',()=>{
+  it('should render hasStatus attribute', () => {
+    const expected = 'absolute bottom-0 right-0 rounded-md'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus />)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render hasStatus attribute active', () => {
+    const expected = 'bg-green-500'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus status={'active'} />)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render hasStatus attribute away', () => {
+    const expected = 'bg-yellow-500'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus status={'away'} />)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render hasStatus attribute busy', () => {
+    const expected = 'bg-red-500'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus status={'busy'} />)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render hasStatus attribute offline', () => {
+    const expected = 'bg-gray-500'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus status={'offline'} />)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render hasStatus size small', () => {
+    const expected = 'w-1.5 h-1.5'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus size={'small'} />)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render hasStatus size regular', () => {
+    const expected = 'w-2 h-2'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus  size={'regular'}/>)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render hasStatus size large', () => {
+    const expected = 'w-3 h-3'
+    const wrapper = mount(<Avatar src="test" alt="Lorem" hasStatus size={'large'} />)
+
+    expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
+  })
+})
