@@ -39,3 +39,14 @@ HasStatus.args = {
   alt: 'Profile image',
   hasStatus: true,
 }
+
+export const SrcUnavailable = Template.bind({})
+SrcUnavailable.args = {
+  alt: 'Profile image',
+}
+
+export const SrcInitial = Template.bind({})
+SrcInitial.args = {
+  alt: 'Profile image',
+  name: 'John Doe'
+}

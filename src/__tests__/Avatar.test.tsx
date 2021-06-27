@@ -107,3 +107,29 @@ describe('Avatar Status',()=>{
     expect(wrapper.find('[data-testid="statusNode"]').getDOMNode().className).toContain(expected);
   })
 })
+describe('Avatar Initial test',()=>{
+  it('should render when avatar is undefined', () => {
+    const expected = 'flex items-center justify-center w-full h-full rounded-full bg-gray-200'
+    const wrapper = mount(<Avatar alt="Lorem" />)
+
+    expect(wrapper.find('[data-testid="initialNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render when avatar is undefined and font size adjusted with size small', () => {
+    const expected = 'text-[0.625rem]'
+    const wrapper = mount(<Avatar alt="Lorem" name='John Doe' size='small' />)
+
+    expect(wrapper.find('[data-testid="initialNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render when avatar is undefined and font size adjusted with size regular', () => {
+    const expected = 'text-sm'
+    const wrapper = mount(<Avatar alt="Lorem" name='John Doe' size='regular' />)
+
+    expect(wrapper.find('[data-testid="initialNode"]').getDOMNode().className).toContain(expected);
+  })
+  it('should render when avatar is undefined and font size adjusted with size large', () => {
+    const expected = 'text-md'
+    const wrapper = mount(<Avatar alt="Lorem" name='John Doe' size='large' />)
+
+    expect(wrapper.find('[data-testid="initialNode"]').getDOMNode().className).toContain(expected);
+  })
+})
