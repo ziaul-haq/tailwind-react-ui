@@ -132,4 +132,10 @@ describe('Avatar Initial test',()=>{
 
     expect(wrapper.find('[data-testid="initialNode"]').getDOMNode().className).toContain(expected);
   })
+  it('should render when we pass initialContainerClassName', () => {
+    const expected = 'bg-red-500 text-white'
+    const wrapper = mount(<Avatar alt="Lorem" name='John Doe' size='large' initialContainerClassName={expected} />)
+
+    expect(wrapper.find('[data-testid="initialNode"]').getDOMNode().className).toContain(expected);
+  })
 })

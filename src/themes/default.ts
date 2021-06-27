@@ -77,7 +77,7 @@ export default {
       regular: 'w-2 h-2',
       small: 'w-1.5 h-1.5',
     },
-    initialImageClass: 'flex items-center justify-center w-full h-full rounded-full bg-gray-200',
+    initialImageClass: 'flex items-center justify-center w-full h-full rounded-full',
     initialFontSize: {
       large: 'text-md',
       regular: 'text-sm',

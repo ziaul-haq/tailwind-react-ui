@@ -44,9 +44,16 @@ export const SrcUnavailable = Template.bind({})
 SrcUnavailable.args = {
   alt: 'Profile image',
 }
-
 export const SrcInitial = Template.bind({})
 SrcInitial.args = {
   alt: 'Profile image',
-  name: 'John Doe'
+  name: 'John Doe',
 }
+
+export const SrcInitialDifferentBG = Template.bind({})
+SrcInitialDifferentBG.args = {
+  alt: 'Profile image',
+  name: 'John Doe',
+  initialContainerClassName: 'bg-red-100 text-red-500'
+}
+

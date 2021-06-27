@@ -1,11 +1,8 @@
 import React, { SyntheticEvent } from 'react'
 
 import { Story, Meta } from '@storybook/react/types-6-0'
-
-import Badge from '../Badge'
-import Button from '../Button'
-import Dropdown from '../Dropdown'
 import { DropdownMenuProps } from '../DropdownMenu'
+import { Avatar,Badge,Button,Dropdown } from '../index'
 
 export default {
   title: 'Dropdown',
@@ -60,10 +57,8 @@ const CustomTemplate: Story<DropdownMenuProps> = ({ align }) => {
   return (
     <Dropdown>
       <Dropdown.Toggle as="div" className="flex items-center">
-        <span>John Doe</span>
-        <span className="flex items-center justify-center ml-2 text-lg text-white rounded-full bg-primary w-9 h-9">
-          JD
-        </span>
+        <span className='mr-2'>John Doe</span>
+        <Avatar name={'John Doe'} alt={'JohnDoe'} initialContainerClassName={'bg-primary text-primary-50'} hasStatus status={'active'}/>
       </Dropdown.Toggle>
       <Dropdown.Menu align={align}>
         <Dropdown.Item onClick={handleClick}>Settings</Dropdown.Item>

@@ -27,6 +27,11 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
    * name is a props that will add initials if src is invalid
    */
   name?: string
+  /**
+   * initialContainerClassName is a props that allows passing classnames into initial container
+   */
+  initialContainerClassName?: string
+
 
 }
 
@@ -39,6 +44,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(function Avatar(pro
     src,
     alt,
     className,
+    initialContainerClassName,
     ...other
   } = props
   const { avatar } = styles
@@ -72,7 +78,18 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(function Avatar(pro
 
   const statusCls = clsx(statusBaseStyle, statusIntent[status], statusSize[size])
 
-  const initialCls = clsx(initialBaseImageClass, initialFontSize[size])
+  const preProcessInitialClass = ()=>{
+    if(initialContainerClassName){
+      if(initialContainerClassName.includes('bg-')) {
+        return initialContainerClassName
+      }else{
+        return initialContainerClassName+" bg-gray-200";
+      }
+    }
+    return 'bg-gray-200';
+  }
+
+  const initialCls = clsx(initialBaseImageClass,preProcessInitialClass(),initialFontSize[size])
 
   const getInitial = (name:string) => {
     let names = name.split(' ');
