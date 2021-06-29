@@ -5,6 +5,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import Input, { InputProps } from '../Input'
 import Label from '../Label'
 import HelperText from '../HelperText'
+import { EditIcon } from './static/Icons'
 
 export default {
   title: 'Input',
@@ -14,8 +15,8 @@ export default {
     onChange: { action: 'onChange' },
     type: {
       control: null,
-    }
-  }
+    },
+  },
 } as Meta
 
 const TextTemplate: Story<InputProps> = (args) => (
@@ -42,6 +43,11 @@ const TextTemplate: Story<InputProps> = (args) => (
     <Label className="mt-2">
       <span>Email</span>
       <Input className="mt-1" value="abc@yahoo.com" {...args} disabled />
+    </Label>
+    <Label className="mt-2 relative">
+      <span>Email</span>
+      <Input className="mt-1 pl-10" value="abc@yahoo.com" {...args} />
+      <EditIcon className="w-5 h-5 absolute bottom-2.5 left-2.5" />
     </Label>
   </section>
 )

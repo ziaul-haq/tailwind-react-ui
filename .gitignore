@@ -6,3 +6,4 @@ dev
 storybook-static/
 lib
 .env
+.idea
