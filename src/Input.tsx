@@ -2,6 +2,31 @@ import React from 'react'
 import clsx from 'clsx'
 import styles from './themes/default'
 
+enum typeEnum {
+  'button',
+  'checkbox',
+  'color',
+  'date',
+  'datetime-local',
+  'email',
+  'file',
+  'hidden',
+  'image',
+  'month',
+  'number',
+  'password',
+  'radio',
+  'range',
+  'reset',
+  'search',
+  'submit',
+  'tel',
+  'text',
+  'time',
+  'url',
+  'week',
+}
+
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
    * Defines the color of the input
@@ -14,7 +39,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   /**
    * Defines the type of the input
    */
-  type?: string
+  type?: keyof typeof typeEnum
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(props, ref) {
