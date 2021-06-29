@@ -5,6 +5,7 @@ import { Story, Meta } from '@storybook/react/types-6-0'
 import Input, { InputProps } from '../Input'
 import Label from '../Label'
 import HelperText from '../HelperText'
+import { HeartIcon } from './Button.stories'
 
 export default {
   title: 'Input',
@@ -42,6 +43,11 @@ const TextTemplate: Story<InputProps> = (args) => (
     <Label className="mt-2">
       <span>Email</span>
       <Input className="mt-1" value="abc@yahoo.com" {...args} disabled />
+    </Label>
+    <Label className="mt-2 relative">
+      <span>Email</span>
+      <Input className="mt-1 pl-10" value="abc@yahoo.com" {...args} />
+      <HeartIcon className='w-6 h-6 absolute bottom-2 left-2 text-red-600' />
     </Label>
   </section>
 )
