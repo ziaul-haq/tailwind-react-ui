@@ -24,7 +24,7 @@
     "prerelease": "npm run build",
     "release": "release-it",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs-build"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
