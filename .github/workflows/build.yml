@@ -25,6 +25,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn run build-storybook
+      - name: Add .nojekyll file
+      - run: touch ./out/.nojekyll
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
